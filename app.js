@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var L_ALL = window.ILE_LISTINGS, AREAS = window.ILE_AREAS, WA = window.ILE_WHATSAPP, TEL = window.ILE_PHONE, TEL_L = window.ILE_PHONE_LABEL, MAIL = window.ILE_EMAIL;
+  var L_ALL = window.ILE_LISTINGS, AREAS = window.ILE_AREAS, WA = window.ILE_WHATSAPP, WA_L = window.ILE_WHATSAPP_LABEL, TEL = window.ILE_PHONE, TEL_L = window.ILE_PHONE_LABEL, MAIL = window.ILE_EMAIL;
   var app = document.getElementById("app"), hd = document.getElementById("hd");
   var fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
   var rmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -135,7 +135,8 @@
   (function () {
     var w = document.getElementById("ftWa"), t = document.getElementById("ftTel"), m = document.getElementById("ftMail");
     w.href = waLink("Hello Ilé Estates, I'm looking for a home in Lagos. Can you help?");
-    t.href = "tel:" + TEL; t.textContent = TEL_L;
+    w.textContent = "WhatsApp: " + WA_L;
+    t.href = "tel:" + TEL; t.textContent = "Call: " + TEL_L;
     m.href = mailLink("Property enquiry"); m.textContent = MAIL;
   })();
 
@@ -197,7 +198,7 @@
       '<section class="sec"><div class="wrap"><div class="band" id="band" data-rv><img data-fade src="' + img("1600210492486-724fe5c67fb0", 1600) + '" alt="" loading="lazy">' +
       '<span class="eyebrow">Selling or letting?</span><h2>Let us find the right buyer for your home.</h2>' +
       '<p>We photograph, market and show your property to serious, verified buyers and tenants, and we handle the paperwork with you.</p>' +
-      '<div class="acts"><a class="btn gold" target="_blank" rel="noopener" href="' + waLink("Hello Ilé Estates, I'd like to sell or let my property.") + '">' + I.wa + ' Talk to an agent</a>' +
+      '<div class="acts"><a class="btn gold" target="_blank" rel="noopener" href="' + waLink("Hello Ilé Estates, I'd like to sell or let my property.") + '">' + I.wa + ' WhatsApp ' + WA_L + '</a>' +
       '<a class="btn" href="tel:' + TEL + '">' + I.phone + ' Call ' + TEL_L + '</a></div></div></div></section></div>';
 
     // search
