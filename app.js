@@ -165,7 +165,7 @@
   function home() {
     var newest = L_ALL.slice().sort(function (a, b) { return b.added < a.added ? -1 : 1; }).slice(0, 6);
     var counts = {}; L_ALL.forEach(function (l) { counts[l.area] = (counts[l.area] || 0) + 1; });
-    var heroId = "1600585154340-be6161a56a0c";
+    var heroId = "1613977257363-707ba9348227";
     app.innerHTML =
       '<div>' +
       '<section class="hero"><div class="hero-bg" id="heroBg"><img src="' + img(heroId, 1600) + '" srcset="' + srcset(heroId, [800, 1200, 1600, 2200]) + '" sizes="100vw" alt="" fetchpriority="high"></div>' +
@@ -321,8 +321,8 @@
   function baseMap(el, opts) {
     var m = L.map(el, Object.assign({ zoomControl: true, scrollWheelZoom: false, attributionControl: true }, opts || {}));
     var esri = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/";
-    L.tileLayer(esri + "World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16, attribution: 'Tiles &copy; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(m);
-    L.tileLayer(esri + "World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16 }).addTo(m);
+    L.tileLayer(esri + "World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16, attribution: 'Tiles &copy; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(m);
+    L.tileLayer(esri + "World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16 }).addTo(m);
     maps.push(m); return m;
   }
   function bigMap(list) {
@@ -430,7 +430,7 @@
       leaflet().then(function (L) {
         if (!document.body.contains(mm)) return;
         var m = baseMap(mm, { dragging: fine, tap: false }).setView([l.lat, l.lng], 14);
-        L.circle([l.lat, l.lng], { radius: 450, color: "#c9a25b", weight: 1.5, fillColor: "#c9a25b", fillOpacity: .15 }).addTo(m);
+        L.circle([l.lat, l.lng], { radius: 450, color: "#8c6a33", weight: 1.5, fillColor: "#c8a96e", fillOpacity: .2 }).addTo(m);
         L.marker([l.lat, l.lng], { icon: L.divIcon({ className: "pin", html: "<b>" + esc(a.name) + "</b>", iconSize: [0, 0] }) }).addTo(m);
       }).catch(function () { mm.innerHTML = '<p class="muted" style="padding:2rem">The map could not load.</p>'; });
     };
