@@ -458,41 +458,9 @@
     if (e.key === "Escape") closeLB(); else if (e.key === "ArrowRight") lbGo(lbIdx() + 1); else if (e.key === "ArrowLeft") lbGo(lbIdx() - 1);
   });
 
-  /* ---------- theme (white + champagne by default, black + gold option) ---------- */
-  var root = document.documentElement, thm = document.getElementById("thm"), themeMeta = document.getElementById("themeColor");
-  var HERO = { light: "1613977257363-707ba9348227", dark: "1600585154340-be6161a56a0c" };
-  function isDark() { return root.getAttribute("data-theme") === "dark"; }
-  function heroFor() { return isDark() ? HERO.dark : HERO.light; }
-  function tileUrl(kind) { return "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_" + (isDark() ? "Dark" : "Light") + "_Gray_" + kind + "/MapServer/tile/{z}/{y}/{x}"; }
-  function syncTheme() {
-    var d = isDark();
-    thm.setAttribute("aria-label", d ? "Switch to light theme" : "Switch to dark theme");
-    themeMeta.setAttribute("content", d ? "#0c0b09" : "#fdfcf9");
-    maps.forEach(function (m) { if (m._ileBase) { m._ileBase.setUrl(tileUrl("Base")); m._ileRef.setUrl(tileUrl("Reference")); } });
-    var h = document.getElementById("heroImg");
-    if (h) { var id = heroFor(); h.src = img(id, 1600); h.srcset = srcset(id, [800, 1200, 1600, 2200]); }
-  }
-  function applyTheme(dark) {
-    if (dark) root.setAttribute("data-theme", "dark"); else root.removeAttribute("data-theme");
-    try { localStorage.setItem("ile:theme", dark ? "dark" : "light"); } catch (e) {}
-    syncTheme();
-  }
-  thm.addEventListener("click", function () {
-    var next = !isDark();
-    if (rmo || !document.startViewTransition) {
-      root.classList.add("theming"); applyTheme(next);
-      setTimeout(function () { root.classList.remove("theming"); }, 500);
-      return;
-    }
-    var b = thm.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2,
-      rad = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy));
-    var vt = document.startViewTransition(function () { applyTheme(next); });
-    vt.ready.then(function () {
-      root.animate({ clipPath: ["circle(0px at " + cx + "px " + cy + "px)", "circle(" + rad + "px at " + cx + "px " + cy + "px)"] },
-        { duration: 900, easing: "cubic-bezier(.65,0,.15,1)", pseudoElement: "::view-transition-new(root)" });
-    }).catch(function () {});
-  });
-  syncTheme();
+  /* ---------- light theme assets ---------- */
+  function heroFor() { return "1613977257363-707ba9348227"; }
+  function tileUrl(kind) { return "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_" + kind + "/MapServer/tile/{z}/{y}/{x}"; }
 
   /* ---------- go ---------- */
   setCount(false);
