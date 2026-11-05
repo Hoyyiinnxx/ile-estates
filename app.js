@@ -391,7 +391,7 @@
       '<div data-rv><h2>Features</h2><ul class="ams">' + l.amenities.map(function (x) { return "<li>" + I.check + esc(x) + "</li>"; }).join("") + '</ul></div>' +
       '<div data-rv><h2>Location</h2><p class="muted" style="margin:-.4rem 0 1rem">' + esc(a.name) + ', Lagos. The exact address is shared when you book a viewing.</p><div class="minimap" id="minimap" role="region" aria-label="Map showing the area"></div></div>' +
       '</div>' +
-      '<aside class="side"><div class="agent"><span class="av">A</span><div><b>Adaeze Okafor</b><span>Senior agent · replies in minutes</span></div></div>' +
+      '<aside class="side"><div class="agent"><span class="av">T</span><div><b>Tolani Bankole</b><span>Senior agent · replies in minutes</span></div></div>' +
       '<p class="pp-price" style="margin:0 0 1rem">' + priceHTML(l) + '</p>' +
       '<a class="btn gold" target="_blank" rel="noopener" href="' + waLink(enquiry(l)) + '">' + I.wa + ' Chat on WhatsApp</a>' +
       '<a class="btn" target="_blank" rel="noopener" href="' + waLink(viewing(l)) + '">Book a viewing</a>' +
