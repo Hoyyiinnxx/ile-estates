@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ilé Residences | Luxury homes in Lagos</title>
+<meta name="description" content="Luxury homes for sale and rent in Banana Island, Ikoyi, Lekki, Victoria Island, Eko Atlantic and Ikeja GRA.">
+<meta name="theme-color" content="#0c0b09">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c0b09'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' text-anchor='middle' fill='%23c9a25b'%3EI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+
+<header class="hd" id="hd">
+  <div class="wrap hd-in">
+    <a class="logo" href="#/" aria-label="Ilé Residences, home">Il<span>é</span><small>Residences</small></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#/" data-nav="home">Home</a>
+      <a href="#/listings?deal=sale" data-nav="sale">Buy</a>
+      <a href="#/listings?deal=rent" data-nav="rent">Rent</a>
+      <a href="#/listings?view=map" data-nav="map">Map</a>
+      <a href="#/listings?saved=1" data-nav="saved" class="sv">Saved <b id="savedCount" class="cnt" hidden>0</b></a>
+    </nav>
+    <a class="btn gold sm hd-cta" id="hdWa" href="#" target="_blank" rel="noopener">Enquire</a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="ft">
+  <div class="wrap ft-in">
+    <div>
+      <a class="logo" href="#/">Il<span>é</span><small>Residences</small></a>
+      <p class="muted">Luxury homes for sale and rent across Lagos.</p>
+    </div>
+    <div class="ft-cols">
+      <div><p class="ft-h">Explore</p><a href="#/listings?deal=sale">Buy</a><a href="#/listings?deal=rent">Rent</a><a href="#/listings?view=map">Map</a><a href="#/listings?saved=1">Saved homes</a></div>
+      <div><p class="ft-h">Areas</p><a href="#/listings?area=banana-island">Banana Island</a><a href="#/listings?area=ikoyi">Ikoyi</a><a href="#/listings?area=lekki-phase-1">Lekki Phase 1</a><a href="#/listings?area=victoria-island">Victoria Island</a></div>
+    </div>
+  </div>
+  <div class="wrap ft-base">
+    <span>© 2026 Ilé Residences. A portfolio demo by Oyeniyi Damilola. Listings are fictional.</span>
+    <span>Photos: Unsplash · Maps: © Esri, © OpenStreetMap contributors</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-x" id="lbX" type="button" aria-label="Close photos">×</button>
+  <button class="lb-nav prev" id="lbPrev" type="button" aria-label="Previous photo">‹</button>
+  <div class="lb-track" id="lbTrack"></div>
+  <button class="lb-nav next" id="lbNext" type="button" aria-label="Next photo">›</button>
+  <p class="lb-count" id="lbCount"></p>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
