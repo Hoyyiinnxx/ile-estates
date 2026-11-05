@@ -285,7 +285,7 @@ select option{background:var(--surface);color:var(--text)}
 .side .agent b{display:block}
 .side .agent span{font-size:.85rem;color:var(--muted)}
 .side .btn{width:100%;margin-top:.6rem}
-.side-c{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.side-c{display:grid;gap:.6rem}
 .side-c .btn{margin-top:.6rem}
 .side .ref{font-size:.82rem;color:var(--muted);margin:1rem 0 0;text-align:center}
 @media(max-width:999px){.side{display:none}}
@@ -294,7 +294,7 @@ select option{background:var(--surface);color:var(--text)}
 .mbar b{font:600 1.5rem/1 var(--serif);color:var(--gold2)}
 .mbar small{display:block;color:var(--muted);font-size:.75rem}
 .mbar .btn.icon-b{margin-left:auto;width:44px;height:44px;padding:0}
-.mbar .btn.gold{margin-left:0}
+.mbar .btn.gold{margin-left:auto}
 @media(min-width:1000px){.mbar{display:none}}
 .has-mbar .ft{padding-bottom:5.5rem}
 @media(min-width:1000px){.has-mbar .ft{padding-bottom:0}}

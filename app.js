@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var L_ALL = window.ILE_LISTINGS, AREAS = window.ILE_AREAS, WA = window.ILE_WHATSAPP, WA_L = window.ILE_WHATSAPP_LABEL, TEL = window.ILE_PHONE, TEL_L = window.ILE_PHONE_LABEL, MAIL = window.ILE_EMAIL;
+  var L_ALL = window.ILE_LISTINGS, AREAS = window.ILE_AREAS, WA = window.ILE_WHATSAPP, WA_L = window.ILE_WHATSAPP_LABEL, MAIL = window.ILE_EMAIL;
   var app = document.getElementById("app"), hd = document.getElementById("hd");
   var fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
   var rmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -133,10 +133,9 @@
   });
   document.getElementById("hdWa").href = waLink("Hello Ilé Estates, I'm looking for a home in Lagos. Can you help?");
   (function () {
-    var w = document.getElementById("ftWa"), t = document.getElementById("ftTel"), m = document.getElementById("ftMail");
+    var w = document.getElementById("ftWa"), m = document.getElementById("ftMail");
     w.href = waLink("Hello Ilé Estates, I'm looking for a home in Lagos. Can you help?");
     w.textContent = "WhatsApp: " + WA_L;
-    t.href = "tel:" + TEL; t.textContent = "Call: " + TEL_L;
     m.href = mailLink("Property enquiry"); m.textContent = MAIL;
   })();
 
@@ -199,7 +198,7 @@
       '<span class="eyebrow">Selling or letting?</span><h2>Let us find the right buyer for your home.</h2>' +
       '<p>We photograph, market and show your property to serious, verified buyers and tenants, and we handle the paperwork with you.</p>' +
       '<div class="acts"><a class="btn gold" target="_blank" rel="noopener" href="' + waLink("Hello Ilé Estates, I'd like to sell or let my property.") + '">' + I.wa + ' WhatsApp ' + WA_L + '</a>' +
-      '<a class="btn" href="tel:' + TEL + '">' + I.phone + ' Call ' + TEL_L + '</a></div></div></div></section></div>';
+      '<a class="btn" href="#/listings">Browse homes</a></div></div></div></section></div>';
 
     // search
     var form = $("#search"), seg = $("#seg"), deal = "sale";
@@ -397,13 +396,13 @@
       '<p class="pp-price" style="margin:0 0 1rem">' + priceHTML(l) + '</p>' +
       '<a class="btn gold" target="_blank" rel="noopener" href="' + waLink(enquiry(l)) + '">' + I.wa + ' Chat on WhatsApp</a>' +
       '<a class="btn" target="_blank" rel="noopener" href="' + waLink(viewing(l)) + '">Book a viewing</a>' +
-      '<div class="side-c"><a class="btn sm" href="tel:' + TEL + '">' + I.phone + ' Call</a><a class="btn sm" href="' + mailLink("Enquiry: " + l.title + " (" + l.ref + ")", enquiry(l)) + '">' + I.mail + ' Email</a></div>' +
+      '<div class="side-c"><a class="btn sm" href="' + mailLink("Enquiry: " + l.title + " (" + l.ref + ")", enquiry(l)) + '">' + I.mail + ' Email</a></div>' +
       '<p class="ref">Ref ' + l.ref + ' · Listed ' + new Date(l.added).toLocaleDateString("en-GB", { day: "numeric", month: "long" }) + '</p></aside></div>' +
 
       (similar.length ? '<section style="margin-bottom:4rem"><div class="sec-h"><div data-rv><span class="eyebrow">You may also like</span><h2>Similar homes</h2></div></div><div class="rail">' +
         similar.map(function (x, i) { return card(x, { rv: true, d: i * 90 }); }).join("") + '</div></section>' : "") +
       '</div></div>' +
-      '<div class="mbar" id="mbar"><div><b>' + priceHTML(l) + '</b><small>' + esc(a.name) + ' · ' + l.beds + ' beds</small></div><a class="btn sm icon-b" href="tel:' + TEL + '" aria-label="Call ' + TEL_L + '">' + I.phone + '</a><a class="btn gold sm" target="_blank" rel="noopener" href="' + waLink(enquiry(l)) + '">' + I.wa + ' WhatsApp</a></div>';
+      '<div class="mbar" id="mbar"><div><b>' + priceHTML(l) + '</b><small>' + esc(a.name) + ' · ' + l.beds + ' beds</small></div><a class="btn gold sm" target="_blank" rel="noopener" href="' + waLink(enquiry(l)) + '">' + I.wa + ' WhatsApp</a></div>';
 
     document.body.classList.add("has-mbar");
     // gallery

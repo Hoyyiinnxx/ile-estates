@@ -4,8 +4,6 @@
 /* Contact details used across the site. WhatsApp is international format, digits only. */
 window.ILE_WHATSAPP = "2347053762938";
 window.ILE_WHATSAPP_LABEL = "0705 376 2938";
-window.ILE_PHONE = "+2349131472786";
-window.ILE_PHONE_LABEL = "0913 147 2786";
 window.ILE_EMAIL = "oyeniyioluwadamilola3@gmail.com";
 
 window.ILE_AREAS = [
