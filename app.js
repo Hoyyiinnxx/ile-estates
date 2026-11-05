@@ -165,10 +165,10 @@
   function home() {
     var newest = L_ALL.slice().sort(function (a, b) { return b.added < a.added ? -1 : 1; }).slice(0, 6);
     var counts = {}; L_ALL.forEach(function (l) { counts[l.area] = (counts[l.area] || 0) + 1; });
-    var heroId = "1613977257363-707ba9348227";
+    var heroId = heroFor();
     app.innerHTML =
       '<div>' +
-      '<section class="hero"><div class="hero-bg" id="heroBg"><img src="' + img(heroId, 1600) + '" srcset="' + srcset(heroId, [800, 1200, 1600, 2200]) + '" sizes="100vw" alt="" fetchpriority="high"></div>' +
+      '<section class="hero"><div class="hero-bg" id="heroBg"><img id="heroImg" src="' + img(heroId, 1600) + '" srcset="' + srcset(heroId, [800, 1200, 1600, 2200]) + '" sizes="100vw" alt="" fetchpriority="high"></div>' +
       '<div class="wrap"><span class="eyebrow">Lagos luxury property</span>' +
       '<h1><span class="ln"><span style="--i:0">Homes that</span></span><span class="ln"><span style="--i:1">match your</span></span><span class="ln"><span style="--i:2" class="gold-t">standard.</span></span></h1>' +
       '<p class="lead">Hand-picked houses, penthouses and apartments for sale and rent in Banana Island, Ikoyi, Lekki, Victoria Island and beyond.</p>' +
@@ -320,9 +320,8 @@
   }
   function baseMap(el, opts) {
     var m = L.map(el, Object.assign({ zoomControl: true, scrollWheelZoom: false, attributionControl: true }, opts || {}));
-    var esri = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/";
-    L.tileLayer(esri + "World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16, attribution: 'Tiles &copy; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(m);
-    L.tileLayer(esri + "World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16 }).addTo(m);
+    m._ileBase = L.tileLayer(tileUrl("Base"), { maxZoom: 16, attribution: 'Tiles &copy; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(m);
+    m._ileRef = L.tileLayer(tileUrl("Reference"), { maxZoom: 16 }).addTo(m);
     maps.push(m); return m;
   }
   function bigMap(list) {
@@ -458,6 +457,42 @@
     if (lb.hidden) { if (e.key === "Escape") closeMenu(); return; }
     if (e.key === "Escape") closeLB(); else if (e.key === "ArrowRight") lbGo(lbIdx() + 1); else if (e.key === "ArrowLeft") lbGo(lbIdx() - 1);
   });
+
+  /* ---------- theme (white + champagne by default, black + gold option) ---------- */
+  var root = document.documentElement, thm = document.getElementById("thm"), themeMeta = document.getElementById("themeColor");
+  var HERO = { light: "1613977257363-707ba9348227", dark: "1600585154340-be6161a56a0c" };
+  function isDark() { return root.getAttribute("data-theme") === "dark"; }
+  function heroFor() { return isDark() ? HERO.dark : HERO.light; }
+  function tileUrl(kind) { return "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_" + (isDark() ? "Dark" : "Light") + "_Gray_" + kind + "/MapServer/tile/{z}/{y}/{x}"; }
+  function syncTheme() {
+    var d = isDark();
+    thm.setAttribute("aria-label", d ? "Switch to light theme" : "Switch to dark theme");
+    themeMeta.setAttribute("content", d ? "#0c0b09" : "#fdfcf9");
+    maps.forEach(function (m) { if (m._ileBase) { m._ileBase.setUrl(tileUrl("Base")); m._ileRef.setUrl(tileUrl("Reference")); } });
+    var h = document.getElementById("heroImg");
+    if (h) { var id = heroFor(); h.src = img(id, 1600); h.srcset = srcset(id, [800, 1200, 1600, 2200]); }
+  }
+  function applyTheme(dark) {
+    if (dark) root.setAttribute("data-theme", "dark"); else root.removeAttribute("data-theme");
+    try { localStorage.setItem("ile:theme", dark ? "dark" : "light"); } catch (e) {}
+    syncTheme();
+  }
+  thm.addEventListener("click", function () {
+    var next = !isDark();
+    if (rmo || !document.startViewTransition) {
+      root.classList.add("theming"); applyTheme(next);
+      setTimeout(function () { root.classList.remove("theming"); }, 500);
+      return;
+    }
+    var b = thm.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2,
+      rad = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy));
+    var vt = document.startViewTransition(function () { applyTheme(next); });
+    vt.ready.then(function () {
+      root.animate({ clipPath: ["circle(0px at " + cx + "px " + cy + "px)", "circle(" + rad + "px at " + cx + "px " + cy + "px)"] },
+        { duration: 900, easing: "cubic-bezier(.65,0,.15,1)", pseudoElement: "::view-transition-new(root)" });
+    }).catch(function () {});
+  });
+  syncTheme();
 
   /* ---------- go ---------- */
   setCount(false);
