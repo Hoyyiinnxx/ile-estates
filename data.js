@@ -1,9 +1,11 @@
-/* Ilé Residences: demo listings (fictional agency, portfolio project).
+/* Ilé Estates: demo listings (fictional agency, portfolio project).
    Photos: Unsplash (free to use). Prices in Naira; rent is per year. */
 
-/* Put your WhatsApp number here in international format, digits only, e.g. "2348012345678".
-   The placeholder below is intentionally invalid so demo enquiries go nowhere. */
-window.ILE_WHATSAPP = "2340000000000";
+/* Contact details used across the site. WhatsApp is international format, digits only. */
+window.ILE_WHATSAPP = "2349131472786";
+window.ILE_PHONE = "+2349131472786";
+window.ILE_PHONE_LABEL = "0913 147 2786";
+window.ILE_EMAIL = "oyeniyioluwadamilola3@gmail.com";
 
 window.ILE_AREAS = [
   { id: "banana-island", name: "Banana Island", img: "1613977257363-707ba9348227", blurb: "Private, gated and waterfront." },
@@ -11,7 +13,13 @@ window.ILE_AREAS = [
   { id: "lekki-phase-1", name: "Lekki Phase 1", img: "1600596542815-ffad4c1539a9", blurb: "Family homes close to everything." },
   { id: "victoria-island", name: "Victoria Island", img: "1545324418-cc1a3fa10c00", blurb: "City living by the Atlantic." },
   { id: "eko-atlantic", name: "Eko Atlantic", img: "1600607687939-ce8a6c25118c", blurb: "Lagos's newest skyline." },
-  { id: "ikeja-gra", name: "Ikeja GRA", img: "1599809275671-b5942cabc7a2", blurb: "Quiet, mainland and spacious." }
+  { id: "ikeja-gra", name: "Ikeja GRA", img: "1599809275671-b5942cabc7a2", blurb: "Quiet, mainland and spacious." },
+  { id: "oniru", name: "Oniru", img: "1602343168117-bb8ffe3e2e9f", blurb: "Beachside calm next to VI." },
+  { id: "ikate", name: "Ikate", img: "1600563438938-a9a27216b4f5", blurb: "Modern builds off the Lekki strip." },
+  { id: "osapa-london", name: "Osapa London", img: "1613553507747-5f8d62ad5904", blurb: "Quiet closes, quick to the coast." },
+  { id: "chevron", name: "Chevron, Lekki", img: "1600566753376-12c8ab7fb75b", blurb: "Gated estates and new homes." },
+  { id: "ajah", name: "Ajah", img: "1567496898669-ee935f5f647a", blurb: "Space and value further east." },
+  { id: "magodo-gra", name: "Magodo GRA", img: "1564013799919-ab600027ffc6", blurb: "Leafy, secure mainland living." }
 ];
 
 window.ILE_LISTINGS = [
@@ -122,5 +130,122 @@ window.ILE_LISTINGS = [
     tags: ["Pool", "Ocean view"],
     amenities: ["Private pool deck", "Ocean views", "Roof terrace", "Gated close", "Smart home", "Uninterrupted power"],
     desc: "A rare detached villa on a gated close in Victoria Island, with a private pool deck, a roof terrace that catches the ocean breeze, and smart lighting throughout."
+  },
+  {
+    id: "beach-villa-oniru", ref: "ILE-1047", featured: true, added: "2026-11-03",
+    title: "Beach-facing five-bedroom villa", area: "oniru", deal: "sale", price: 1100000000,
+    type: "Detached house", beds: 5, baths: 6, size: 820, year: 2024, lat: 6.4326, lng: 3.4496,
+    imgs: ["1602343168117-bb8ffe3e2e9f", "1600210491892-03d54c0aaf87", "1505693416388-ac5ce068fe85", "1600566752229-250ed79470f8"],
+    tags: ["Pool", "New build"],
+    amenities: ["Swimming pool", "Sea breeze terrace", "Chef's kitchen", "Staff quarters", "Smart lighting", "Backup power and solar"],
+    desc: "A crisp new villa a short walk from Oniru beach, with a wide pool terrace, arched windows that fill the lounge with light, and five en-suite bedrooms."
+  },
+  {
+    id: "pool-terrace-osapa", ref: "ILE-1046", featured: false, added: "2026-11-02",
+    title: "Four-bedroom terrace with plunge pool", area: "osapa-london", deal: "sale", price: 380000000,
+    type: "Terrace", beds: 4, baths: 5, size: 360, year: 2023, lat: 6.4366, lng: 3.5207,
+    imgs: ["1613553507747-5f8d62ad5904", "1600121848594-d8644e57abab", "1615874959474-d609969a20ed", "1600585152220-90363fe7e115"],
+    tags: ["Pool", "Gated"],
+    amenities: ["Plunge pool", "Roof terrace", "Fitted kitchen", "Boys' quarters", "Gated close", "Backup power"],
+    desc: "A sleek terrace in a quiet Osapa London close, with a private plunge pool, a roof terrace and an open kitchen made for hosting."
+  },
+  {
+    id: "modern-detached-chevron", ref: "ILE-1045", featured: true, added: "2026-11-01",
+    title: "Five-bedroom detached house", area: "chevron", deal: "sale", price: 720000000,
+    type: "Detached house", beds: 5, baths: 6, size: 640, year: 2023, lat: 6.4398, lng: 3.5373,
+    imgs: ["1600566753376-12c8ab7fb75b", "1600585154084-4e5fe7c39198", "1617104678098-de229db51175", "1600607686527-6fb886090705"],
+    tags: ["New build", "Gated"],
+    amenities: ["Gated estate", "Cinema room", "Fitted kitchen", "Walk-in wardrobes", "Staff quarters", "Solar and inverter"],
+    desc: "Timber, glass and warm lighting give this Chevron home real evening presence. Inside are a cinema room, a sleek kitchen and five en-suite bedrooms."
+  },
+  {
+    id: "garden-pool-magodo", ref: "ILE-1044", featured: false, added: "2026-10-31",
+    title: "Five-bedroom home with pool and garden", area: "magodo-gra", deal: "sale", price: 450000000,
+    type: "Detached house", beds: 5, baths: 5, size: 610, year: 2019, lat: 6.6206, lng: 3.3846,
+    imgs: ["1564013799919-ab600027ffc6", "1600210492493-0946911123ea", "1595526114035-0d45ed16cfbf", "1502005097973-6a7082348e28"],
+    tags: ["Pool", "Garden"],
+    amenities: ["Swimming pool", "Large garden", "Balcony", "Boys' quarters", "Backup power", "Parking for 4"],
+    desc: "A sunny family home in secure Magodo GRA Phase 2, with a pool, mature palms, wraparound balconies and plenty of room to grow."
+  },
+  {
+    id: "townhouse-ajah", ref: "ILE-1043", featured: false, added: "2026-10-30",
+    title: "Three-bedroom townhouse", area: "ajah", deal: "rent", price: 9500000,
+    type: "Terrace", beds: 3, baths: 3, size: 210, year: 2021, lat: 6.4672, lng: 3.5714,
+    imgs: ["1567496898669-ee935f5f647a", "1631679706909-1844bbd07221", "1616137466211-f939a420be84", "1502005097973-6a7082348e28"],
+    tags: ["Family home", "Gated"],
+    amenities: ["Gated estate", "Fitted kitchen", "Children's play area", "Backup power", "Parking"],
+    desc: "A bright, easy-care townhouse in a well-run Ajah estate, close to schools and the Lekki-Epe expressway."
+  },
+  {
+    id: "semi-detached-ikate", ref: "ILE-1042", featured: false, added: "2026-10-29",
+    title: "Four-bedroom semi-detached duplex", area: "ikate", deal: "rent", price: 18000000,
+    type: "Duplex", beds: 4, baths: 5, size: 300, year: 2022, lat: 6.4429, lng: 3.4925,
+    imgs: ["1600563438938-a9a27216b4f5", "1622866306950-81d17097d458", "1595526114035-0d45ed16cfbf", "1600585152220-90363fe7e115"],
+    tags: ["New build"],
+    amenities: ["Family lounge", "Fitted kitchen", "Boys' quarters", "Backup power", "Parking for 2"],
+    desc: "A modern semi-detached duplex in Ikate with clean lines, a family lounge upstairs and a short drive to the Lekki strip."
+  },
+  {
+    id: "oceanfront-eko-atlantic", ref: "ILE-1040", featured: true, added: "2026-10-27",
+    title: "Oceanfront five-bedroom residence", area: "eko-atlantic", deal: "sale", price: 3200000000,
+    type: "Detached house", beds: 5, baths: 6, size: 1100, year: 2025, lat: 6.4060, lng: 3.4110,
+    imgs: ["1615571022219-eb45cf7faa9d", "1600573472550-8090b5e0745e", "1600047508788-786f3865b4b9", "1617104678098-de229db51175"],
+    tags: ["Ocean view", "Waterfront", "Smart home"],
+    amenities: ["Direct ocean views", "Glass staircase", "Infinity terrace", "Elevator", "Smart home", "Uninterrupted power"],
+    desc: "One of very few private homes on the Eko Atlantic waterfront. Glass from floor to ceiling frames the ocean from almost every room."
+  },
+  {
+    id: "modern-home-lekki-rent", ref: "ILE-1039", featured: false, added: "2026-10-25",
+    title: "Four-bedroom home with pool", area: "lekki-phase-1", deal: "rent", price: 35000000,
+    type: "Detached house", beds: 4, baths: 5, size: 420, year: 2022, lat: 6.4496, lng: 3.4701,
+    imgs: ["1582268611958-ebfd161ef9cf", "1600210492493-0946911123ea", "1615874959474-d609969a20ed", "1600566752229-250ed79470f8"],
+    tags: ["Pool", "Furnished"],
+    amenities: ["Swimming pool", "Furnished", "Outdoor lounge", "Staff quarters", "Backup power"],
+    desc: "A furnished, single-level home wrapped around a sparkling pool, tucked into a quiet Lekki Phase 1 street."
+  },
+  {
+    id: "night-mansion-ikoyi", ref: "ILE-1037", featured: false, added: "2026-10-20",
+    title: "Six-bedroom mansion on Bourdillon", area: "ikoyi", deal: "sale", price: 2100000000,
+    type: "Detached house", beds: 6, baths: 7, size: 1150, year: 2024, lat: 6.4541, lng: 3.4321,
+    imgs: ["1600585153490-76fb20a32601", "1600121848594-d8644e57abab", "1505693416388-ac5ce068fe85", "1600566752229-250ed79470f8"],
+    tags: ["New build", "Smart home"],
+    amenities: ["Home cinema", "Wine room", "Elevator", "Gym", "Staff quarters", "Smart home", "Solar and inverter"],
+    desc: "A dramatic new mansion off Bourdillon Road, finished in dark brick and timber, with a wine room, cinema and lift to every floor."
+  },
+  {
+    id: "mediterranean-villa-banana-island", ref: "ILE-1036", featured: true, added: "2026-10-19",
+    title: "Mediterranean villa with resort pool", area: "banana-island", deal: "sale", price: 3500000000,
+    type: "Detached house", beds: 7, baths: 8, size: 1600, year: 2021, lat: 6.4611, lng: 3.4461,
+    imgs: ["1416331108676-a22ccb276e35", "1600210491892-03d54c0aaf87", "1617104678098-de229db51175", "1584622650111-993a426fbf0a"],
+    tags: ["Pool", "Waterfront"],
+    amenities: ["Resort pool", "Guest wing", "Courtyard garden", "Elevator", "Staff quarters", "24/7 security", "Uninterrupted power"],
+    desc: "A seven-bedroom villa built around a lit courtyard and resort-style pool, with a separate guest wing, on one of Banana Island's largest plots."
+  },
+  {
+    id: "apartment-victoria-island", ref: "ILE-1034", featured: false, added: "2026-10-16",
+    title: "Three-bedroom apartment with balcony", area: "victoria-island", deal: "rent", price: 22000000,
+    type: "Apartment", beds: 3, baths: 3, size: 170, year: 2020, lat: 6.4311, lng: 3.4181,
+    imgs: ["1460317442991-0ec209397118", "1622866306950-81d17097d458", "1615874959474-d609969a20ed", "1502005097973-6a7082348e28"],
+    tags: ["Serviced"],
+    amenities: ["Balcony", "Gym", "Lift", "24/7 security", "Backup power", "Parking"],
+    desc: "A modern three-bedroom apartment with a private balcony, in a managed block close to Ozumba Mbadiwe and the Civic Centre."
+  },
+  {
+    id: "smart-terrace-oniru", ref: "ILE-1032", featured: false, added: "2026-10-14",
+    title: "Four-bedroom smart terrace", area: "oniru", deal: "rent", price: 30000000,
+    type: "Terrace", beds: 4, baths: 5, size: 340, year: 2023, lat: 6.4339, lng: 3.4513,
+    imgs: ["1600607688969-a5bfcd646154", "1600585152220-90363fe7e115", "1631679706909-1844bbd07221", "1595526114035-0d45ed16cfbf"],
+    tags: ["Smart home", "Garden"],
+    amenities: ["Smart home system", "Private garden", "Fitted kitchen", "Boys' quarters", "Solar and inverter"],
+    desc: "A contemporary terrace shaded by a great old tree, with smart controls throughout and a private garden. Minutes from VI."
+  },
+  {
+    id: "white-villa-ajah", ref: "ILE-1030", featured: false, added: "2026-10-10",
+    title: "Four-bedroom contemporary villa", area: "ajah", deal: "sale", price: 160000000,
+    type: "Detached house", beds: 4, baths: 4, size: 330, year: 2021, lat: 6.4655, lng: 3.5681,
+    imgs: ["1523217582562-09d0def993a6", "1554995207-c18c203602cb", "1616137466211-f939a420be84", "1600607686527-6fb886090705"],
+    tags: ["Garden", "Family home"],
+    amenities: ["Garden", "Study", "Fitted kitchen", "Boys' quarters", "Backup power", "Parking for 3"],
+    desc: "Bold white geometry and a leafy garden make this Ajah villa stand out. Great value for a detached home this close to the coast."
   }
 ];

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var L_ALL = window.ILE_LISTINGS, AREAS = window.ILE_AREAS, WA = window.ILE_WHATSAPP;
+  var L_ALL = window.ILE_LISTINGS, AREAS = window.ILE_AREAS, WA = window.ILE_WHATSAPP, TEL = window.ILE_PHONE, TEL_L = window.ILE_PHONE_LABEL, MAIL = window.ILE_EMAIL;
   var app = document.getElementById("app"), hd = document.getElementById("hd");
   var fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
   var rmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -24,10 +24,11 @@
   function priceText(l) { return money(l.price) + (l.deal === "rent" ? " a year" : ""); }
   function waLink(msg) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg); }
   function enquiry(l) {
-    return "Hello Ilé Residences, I'm interested in \"" + l.title + "\" (" + l.ref + ") in " + area(l.area).name +
+    return "Hello Ilé Estates, I'm interested in \"" + l.title + "\" (" + l.ref + ") in " + area(l.area).name +
       ", listed at " + priceText(l) + ". Is it still available?\n" + location.origin + location.pathname + "#/property/" + l.id;
   }
-  function viewing(l) { return "Hello Ilé Residences, I'd like to book a viewing for \"" + l.title + "\" (" + l.ref + "). When is a good time?"; }
+  function mailLink(subj, body) { return "mailto:" + MAIL + "?subject=" + encodeURIComponent(subj) + (body ? "&body=" + encodeURIComponent(body) : ""); }
+  function viewing(l) { return "Hello Ilé Estates, I'd like to book a viewing for \"" + l.title + "\" (" + l.ref + "). When is a good time?"; }
 
   var I = {
     pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
@@ -41,6 +42,8 @@
     map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4zM9 4v13M15 6.5v13"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
     share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v11M7.5 8.5 12 4l4.5 4.5M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>',
     wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.6-.4z"/></svg>'
   };
 
@@ -128,7 +131,13 @@
     var o = hd.classList.toggle("open"); burger.setAttribute("aria-expanded", o);
     document.documentElement.style.overflow = o ? "hidden" : "";
   });
-  document.getElementById("hdWa").href = waLink("Hello Ilé Residences, I'm looking for a home in Lagos. Can you help?");
+  document.getElementById("hdWa").href = waLink("Hello Ilé Estates, I'm looking for a home in Lagos. Can you help?");
+  (function () {
+    var w = document.getElementById("ftWa"), t = document.getElementById("ftTel"), m = document.getElementById("ftMail");
+    w.href = waLink("Hello Ilé Estates, I'm looking for a home in Lagos. Can you help?");
+    t.href = "tel:" + TEL; t.textContent = TEL_L;
+    m.href = mailLink("Property enquiry"); m.textContent = MAIL;
+  })();
 
   /* ---------- after render: images, reveals, counters ---------- */
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
@@ -185,11 +194,11 @@
       '<div class="stat"><b data-count="340" data-suf="+">0</b><span>Families moved in</span></div>' +
       '<div class="stat"><b data-count="4.9">0</b><span>Average client rating</span></div></div></section>' +
 
-      '<section class="sec"><div class="wrap"><div class="band" data-rv><img data-fade src="' + img("1600210492486-724fe5c67fb0", 1600) + '" alt="" loading="lazy">' +
+      '<section class="sec"><div class="wrap"><div class="band" id="band" data-rv><img data-fade src="' + img("1600210492486-724fe5c67fb0", 1600) + '" alt="" loading="lazy">' +
       '<span class="eyebrow">Selling or letting?</span><h2>Let us find the right buyer for your home.</h2>' +
       '<p>We photograph, market and show your property to serious, verified buyers and tenants, and we handle the paperwork with you.</p>' +
-      '<div class="acts"><a class="btn gold" target="_blank" rel="noopener" href="' + waLink("Hello Ilé Residences, I'd like to sell or let my property.") + '">' + I.wa + ' Talk to an agent</a>' +
-      '<a class="btn" href="#/listings">Browse homes</a></div></div></div></section></div>';
+      '<div class="acts"><a class="btn gold" target="_blank" rel="noopener" href="' + waLink("Hello Ilé Estates, I'd like to sell or let my property.") + '">' + I.wa + ' Talk to an agent</a>' +
+      '<a class="btn" href="tel:' + TEL + '">' + I.phone + ' Call ' + TEL_L + '</a></div></div></div></section></div>';
 
     // search
     var form = $("#search"), seg = $("#seg"), deal = "sale";
@@ -201,6 +210,12 @@
       var q = ["deal=" + deal]; if (form.area.value) q.push("area=" + form.area.value); if (form.beds.value) q.push("beds=" + form.beds.value);
       location.hash = "#/listings?" + q.join("&");
     });
+    // band: glow follows the pointer, press feedback on touch
+    var band = $("#band");
+    if (band && !rmo) {
+      var bmove = function (e) { var r = band.getBoundingClientRect(); band.style.setProperty("--mx", (e.clientX - r.left) + "px"); band.style.setProperty("--my", (e.clientY - r.top) + "px"); };
+      band.addEventListener("pointermove", bmove); band.addEventListener("pointerdown", bmove);
+    }
     // gentle parallax on desktop
     if (fine && !rmo) {
       var bg = $("#heroBg"), q2 = 0;
@@ -218,7 +233,7 @@
     LP = { deal: p.deal || "", area: p.area || "", beds: p.beds || "", max: p.max || "", sort: p.sort || "new", saved: p.saved === "1", view: p.view === "map" ? "map" : "grid" };
     var title = LP.saved ? "Your saved homes" : LP.deal === "rent" ? "Homes to rent" : LP.deal === "sale" ? "Homes for sale" : "All homes";
     var sub = LP.saved ? "Your shortlist stays on this device." : LP.area ? "In " + area(LP.area).name + ", Lagos." : "Across Lagos's best neighbourhoods.";
-    app.innerHTML = '<div><section class="pg-top"><div class="wrap"><span class="eyebrow">Ilé Residences</span><h1 id="ltitle">' + esc(title) + '</h1><p class="muted" id="lsub">' + esc(sub) + '</p></div></section>' +
+    app.innerHTML = '<div><section class="pg-top"><div class="wrap"><span class="eyebrow">Ilé Estates</span><h1 id="ltitle">' + esc(title) + '</h1><p class="muted" id="lsub">' + esc(sub) + '</p></div></section>' +
       '<div class="bar"><div class="wrap bar-in">' +
       '<div class="tog" id="tDeal" role="group" aria-label="Buy or rent"><button type="button" data-v="">All</button><button type="button" data-v="sale">Buy</button><button type="button" data-v="rent">Rent</button></div>' +
       '<label class="chip" id="cArea"><select id="fArea" aria-label="Area"><option value="">All areas</option>' + AREAS.map(function (a) { return '<option value="' + a.id + '">' + esc(a.name) + '</option>'; }).join("") + '</select></label>' +
@@ -381,12 +396,13 @@
       '<p class="pp-price" style="margin:0 0 1rem">' + priceHTML(l) + '</p>' +
       '<a class="btn gold" target="_blank" rel="noopener" href="' + waLink(enquiry(l)) + '">' + I.wa + ' Chat on WhatsApp</a>' +
       '<a class="btn" target="_blank" rel="noopener" href="' + waLink(viewing(l)) + '">Book a viewing</a>' +
+      '<div class="side-c"><a class="btn sm" href="tel:' + TEL + '">' + I.phone + ' Call</a><a class="btn sm" href="' + mailLink("Enquiry: " + l.title + " (" + l.ref + ")", enquiry(l)) + '">' + I.mail + ' Email</a></div>' +
       '<p class="ref">Ref ' + l.ref + ' · Listed ' + new Date(l.added).toLocaleDateString("en-GB", { day: "numeric", month: "long" }) + '</p></aside></div>' +
 
       (similar.length ? '<section style="margin-bottom:4rem"><div class="sec-h"><div data-rv><span class="eyebrow">You may also like</span><h2>Similar homes</h2></div></div><div class="rail">' +
         similar.map(function (x, i) { return card(x, { rv: true, d: i * 90 }); }).join("") + '</div></section>' : "") +
       '</div></div>' +
-      '<div class="mbar" id="mbar"><div><b>' + priceHTML(l) + '</b><small>' + esc(a.name) + ' · ' + l.beds + ' beds</small></div><a class="btn gold sm" target="_blank" rel="noopener" href="' + waLink(enquiry(l)) + '">' + I.wa + ' WhatsApp</a></div>';
+      '<div class="mbar" id="mbar"><div><b>' + priceHTML(l) + '</b><small>' + esc(a.name) + ' · ' + l.beds + ' beds</small></div><a class="btn sm icon-b" href="tel:' + TEL + '" aria-label="Call ' + TEL_L + '">' + I.phone + '</a><a class="btn gold sm" target="_blank" rel="noopener" href="' + waLink(enquiry(l)) + '">' + I.wa + ' WhatsApp</a></div>';
 
     document.body.classList.add("has-mbar");
     // gallery
